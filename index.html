@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Videos</title>
+  <title>Mi Página de Videos</title>
   <style>
     /* Estilos básicos y tema oscuro por defecto */
     body {
@@ -69,6 +69,7 @@
       position: absolute;
       top: 10px;
       right: 10px;
+      z-index: 10;
     }
 
     /* Estilos para el menú */
@@ -114,7 +115,6 @@
       overflow-x: auto;
       padding-bottom: 10px;
       -webkit-overflow-scrolling: touch;
-      transition: transform 0.2s ease;
     }
 
     .carousel img {
@@ -130,16 +130,12 @@
       transform: scale(1.05);
     }
 
-    /* Barra de búsqueda para el carrusel */
-    .search-bar {
-      width: 80%;
-      padding: 10px;
-      margin: 20px auto;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-      color: #333333;
-      display: block;
+    /* Copyright */
+    .copyright {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px;
+      color: #bbb;
     }
   </style>
 </head>
@@ -161,21 +157,21 @@
   <div class="container">
     <h1>Mi Página de Videos</h1>
 
-    <p>Por: Gastón Arag. Introduce la URL del video que deseas ver:</p>
+    <p>Introduce la URL del video que deseas ver:</p>
     <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
     <button onclick="loadVideo()">Ver Video</button>
     <div class="video-container" id="videoContainer"></div>
-  </div>
-
-  <!-- Barra de búsqueda del carrusel -->
-  <div class="container">
-    <input type="text" class="search-bar" id="searchBar" placeholder="Buscar en el carrusel..." oninput="filterCarousel()">
   </div>
 
   <!-- Carrusel de videos estilo Netflix -->
   <div class="carousel-container">
     <h2>Explora nuestros videos</h2>
     <div class="carousel" id="carousel"></div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    <p>Copyright: Por: Gastón Arag.</p>
   </div>
 
   <!-- Scripts -->
@@ -189,7 +185,6 @@
         const img = document.createElement("img");
         img.src = video.thumbnail;
         img.alt = "Video thumbnail";
-        img.dataset.title = video.title; // Agrega título para buscar
         img.addEventListener("click", () => loadCarouselVideo(video.videoUrl));
         carousel.appendChild(img);
       });
@@ -235,3 +230,8 @@
       if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
         menu.style.display = "none";
       }
+    });
+  </script>
+
+</body>
+</html>
