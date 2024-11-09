@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página de Videos</title>
+  <title>Página de Videos</title>
   <style>
-    /* Estilos básicos y modo oscuro por defecto */
+    /* Estilos básicos y tema oscuro por defecto */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #121212;
+      background-color: #181818;
       color: #ffffff;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -52,7 +52,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       margin: 10px;
     }
 
@@ -114,6 +114,7 @@
       overflow-x: auto;
       padding-bottom: 10px;
       -webkit-overflow-scrolling: touch;
+      transition: transform 0.2s ease;
     }
 
     .carousel img {
@@ -127,6 +128,18 @@
 
     .carousel img:hover {
       transform: scale(1.05);
+    }
+
+    /* Barra de búsqueda para el carrusel */
+    .search-bar {
+      width: 80%;
+      padding: 10px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #333333;
+      display: block;
     }
   </style>
 </head>
@@ -148,10 +161,15 @@
   <div class="container">
     <h1>Mi Página de Videos</h1>
 
-    <p>Introduce la URL del video que deseas ver:</p>
+    <p>Por: Gastón Arag. Introduce la URL del video que deseas ver:</p>
     <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
     <button onclick="loadVideo()">Ver Video</button>
     <div class="video-container" id="videoContainer"></div>
+  </div>
+
+  <!-- Barra de búsqueda del carrusel -->
+  <div class="container">
+    <input type="text" class="search-bar" id="searchBar" placeholder="Buscar en el carrusel..." oninput="filterCarousel()">
   </div>
 
   <!-- Carrusel de videos estilo Netflix -->
@@ -171,6 +189,7 @@
         const img = document.createElement("img");
         img.src = video.thumbnail;
         img.alt = "Video thumbnail";
+        img.dataset.title = video.title; // Agrega título para buscar
         img.addEventListener("click", () => loadCarouselVideo(video.videoUrl));
         carousel.appendChild(img);
       });
@@ -216,8 +235,3 @@
       if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
         menu.style.display = "none";
       }
-    });
-  </script>
-
-</body>
-</html>
