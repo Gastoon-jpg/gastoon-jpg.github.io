@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     img.addEventListener("click", () => loadCarouselVideo(video.videoUrl));
     carousel.appendChild(img);
   });
+
+  // Configurar el botón de alternar modo color/blanco y negro
+  const toggleColorButton = document.getElementById("toggleColorMode");
+  toggleColorButton.addEventListener("click", toggleColorMode);
 });
 
 // Función para cargar un video desde la URL ingresada manualmente
@@ -30,4 +34,15 @@ function loadVideo() {
 function loadCarouselVideo(videoUrl) {
   const videoContainer = document.getElementById("videoContainer");
   videoContainer.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
-    }
+}
+
+// Función para alternar entre color y blanco y negro
+function toggleColorMode() {
+  document.body.classList.toggle("black-and-white");
+  const toggleColorButton = document.getElementById("toggleColorMode");
+  if (document.body.classList.contains("black-and-white")) {
+    toggleColorButton.textContent = "Color";
+  } else {
+    toggleColorButton.textContent = "Blanco y Negro";
+  }
+}
