@@ -10,7 +10,7 @@ const videoDatabase = [
   },
   {
     thumbnail: "https://m.media-amazon.com/images/M/MV5BZTk3OGMwMWMtOWYwYS00MjUzLWJlY2EtNzUyOWExYmQ2ZTQ1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    videoUrl: "https://gastoon-jpg.github.io/repro?get=https://asdas1241-kickia.hf.space/stream.m3u8"
+    videoUrl: "https://asdas1241-kickia.hf.space/stream.m3u8"
   }
   // Puedes añadir más videos aquí
 ];
