@@ -1,15 +1,15 @@
 // database.js
 const videoDatabase = [
   {
-    thumbnail: "https://via.placeholder.com/180x270.png?text=1",
+    thumbnail: "https://images.app.goo.gl/AJwKc18Xsrx1cFP77",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
   {
-    thumbnail: "https://via.placeholder.com/180x270.png?text=2",
+    thumbnail: "https://images.app.goo.gl/emqhvARFFaHmCPvy5",
     videoUrl: "https://www.youtube.com/embed/3JZ_D3ELwOQ"
   },
   {
-    thumbnail: "https://via.placeholder.com/180x270.png?text=3",
+    thumbnail: "https://images.app.goo.gl/qPwA7FZ417NUB3RY9",
     videoUrl: "https://www.youtube.com/embed/5NV6Rdv1a3I"
   }
   // Puedes añadir más videos aquí
