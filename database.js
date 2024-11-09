@@ -5,8 +5,8 @@ const videoDatabase = [
     videoUrl: "https://asdas1241-gravityia.hf.space/stream.m3u8"
   },
   {
-    thumbnail: "https://images.app.goo.gl/emqhvARFFaHmCPvy5",
-    videoUrl: "https://www.youtube.com/embed/5NV6Rdv1a3I"
+    thumbnail: "https://es.web.img2.acsta.net/pictures/14/02/11/12/56/318203.jpg",
+    videoUrl: "https://asdas1241-sipmia.hf.space/stream.m3u8"
   },
   {
     thumbnail: "https://images.app.goo.gl/qPwA7FZ417NUB3RY9",
