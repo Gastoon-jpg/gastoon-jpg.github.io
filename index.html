@@ -4,15 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Página de Videos</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Estilos básicos y modo oscuro por defecto */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #ffffff;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Modo claro */
+    body.light-mode {
+      background-color: #f4f4f4;
+      color: #333333;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: inherit;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    /* Estilos para el botón "Ver Video" */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Estilos para el botón de alternar modo */
+    .toggle-mode-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #ffffff;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .toggle-mode-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Icono de sol/minimalista */
+    .toggle-mode-btn::before {
+      content: "☀️"; /* Icono de sol */
+      display: inline-block;
+    }
+
+    /* Modo oscuro - carrusel */
+    .carousel-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel img {
+      width: 180px;
+      height: 270px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+
+  </style>
 </head>
 <body>
 
   <div class="container">
     <h1>Mi Página de Videos</h1>
-
-    <!-- Botón para alternar entre blanco y negro / color -->
-    <button id="toggleColorMode">Blanco y Negro</button>
 
     <p>Hecha por Gastón Arag. Pon la URL del video que deseas ver:</p>
     <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
@@ -26,9 +131,59 @@
     <div class="carousel" id="carousel"></div>
   </div>
 
+  <!-- Botón para alternar entre modo oscuro y claro -->
+  <button class="toggle-mode-btn" id="toggleModeBtn"></button>
+
   <!-- Scripts -->
   <script src="database.js"></script>
-  <script src="scripts.js"></script>
+  <script>
+    // Cargar los videos del "database.js" al carrusel
+    document.addEventListener("DOMContentLoaded", () => {
+      const carousel = document.getElementById("carousel");
+
+      videoDatabase.forEach(video => {
+        const img = document.createElement("img");
+        img.src = video.thumbnail;
+        img.alt = "Video thumbnail";
+        img.addEventListener("click", () => loadCarouselVideo(video.videoUrl));
+        carousel.appendChild(img);
+      });
+
+      // Configurar el botón de alternar modo
+      const toggleModeButton = document.getElementById("toggleModeBtn");
+      toggleModeButton.addEventListener("click", toggleColorMode);
+    });
+
+    // Función para cargar un video desde la URL ingresada manualmente
+    function loadVideo() {
+      const videoUrl = document.getElementById("videoUrl").value;
+      const videoContainer = document.getElementById("videoContainer");
+
+      if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+        const videoId = videoUrl.split("v=")[1] || videoUrl.split("/").pop();
+        videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+      } else {
+        videoContainer.innerHTML = `<video controls><source src="${videoUrl}" type="video/mp4"></video>`;
+      }
+    }
+
+    // Función para cargar el video desde el carrusel
+    function loadCarouselVideo(videoUrl) {
+      const videoContainer = document.getElementById("videoContainer");
+      videoContainer.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
+    }
+
+    // Alternar entre modo oscuro y claro
+    function toggleColorMode() {
+      document.body.classList.toggle("light-mode");
+      const toggleModeButton = document.getElementById("toggleModeBtn");
+      if (document.body.classList.contains("light-mode")) {
+        toggleModeButton.textContent = ""; // Ícono de sol para modo oscuro
+      } else {
+        toggleModeButton.textContent = ""; // Ícono de sol para modo claro
+      }
+    }
+  </script>
 
 </body>
 </html>
