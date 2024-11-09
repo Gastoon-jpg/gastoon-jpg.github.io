@@ -23,19 +23,20 @@
 
     .container {
       max-width: 600px;
-      padding: 20px;
+      padding: 40px;
       margin: auto;
       text-align: center;
     }
 
     h1, h2 {
       color: inherit;
+      margin-bottom: 20px;
     }
 
     input[type="text"] {
       width: 80%;
       padding: 10px;
-      margin: 10px 0;
+      margin: 20px 0;
       border: 1px solid #ddd;
       border-radius: 5px;
       font-size: 16px;
@@ -60,30 +61,46 @@
       transform: scale(1.05);
     }
 
-    /* Estilos para el botón de alternar modo */
-    .toggle-mode-btn {
-      background: none;
-      border: none;
+    /* Menú de tres puntos */
+    .menu-icon {
       font-size: 24px;
       color: #ffffff;
       cursor: pointer;
       position: absolute;
       top: 10px;
       right: 10px;
-      transition: transform 0.2s ease;
     }
 
-    .toggle-mode-btn:hover {
-      transform: scale(1.1);
+    /* Estilos para el menú */
+    .menu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      background-color: #333333;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    /* Icono de sol/minimalista */
-    .toggle-mode-btn::before {
-      content: "☀️"; /* Icono de sol */
-      display: inline-block;
+    .menu button {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      color: #ffffff;
+      padding: 5px 0;
+      cursor: pointer;
+      font-size: 16px;
     }
 
-    /* Modo oscuro - carrusel */
+    .menu button svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    /* Estilos para el carrusel */
     .carousel-container {
       max-width: 1000px;
       margin: 40px auto;
@@ -111,15 +128,27 @@
     .carousel img:hover {
       transform: scale(1.05);
     }
-
   </style>
 </head>
 <body>
 
+  <!-- Menú de tres puntos y opciones -->
+  <div class="menu-icon" onclick="toggleMenu()">⋮</div>
+  <div class="menu" id="menu">
+    <button onclick="toggleColorMode()">
+      <!-- Icono de sol SVG -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4V2M12 22v-2M4.22 4.22l1.42-1.42M18.36 18.36l-1.42 1.42M4 12H2m20 0h-2M4.22 19.78l1.42 1.42M18.36 5.64l-1.42-1.42M12 8a4 4 0 100 8 4 4 0 000-8z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Cambiar tema
+    </button>
+  </div>
+
+  <!-- Contenido principal -->
   <div class="container">
     <h1>Mi Página de Videos</h1>
 
-    <p>Hecha por Gastón Arag. Pon la URL del video que deseas ver:</p>
+    <p>Introduce la URL del video que deseas ver:</p>
     <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
     <button onclick="loadVideo()">Ver Video</button>
     <div class="video-container" id="videoContainer"></div>
@@ -130,9 +159,6 @@
     <h2>Explora nuestros videos</h2>
     <div class="carousel" id="carousel"></div>
   </div>
-
-  <!-- Botón para alternar entre modo oscuro y claro -->
-  <button class="toggle-mode-btn" id="toggleModeBtn"></button>
 
   <!-- Scripts -->
   <script src="database.js"></script>
@@ -149,9 +175,8 @@
         carousel.appendChild(img);
       });
 
-      // Configurar el botón de alternar modo
-      const toggleModeButton = document.getElementById("toggleModeBtn");
-      toggleModeButton.addEventListener("click", toggleColorMode);
+      // Configurar el menú y el modo oscuro por defecto
+      toggleColorMode(); // Iniciar en modo oscuro
     });
 
     // Función para cargar un video desde la URL ingresada manualmente
@@ -176,13 +201,22 @@
     // Alternar entre modo oscuro y claro
     function toggleColorMode() {
       document.body.classList.toggle("light-mode");
-      const toggleModeButton = document.getElementById("toggleModeBtn");
-      if (document.body.classList.contains("light-mode")) {
-        toggleModeButton.textContent = ""; // Ícono de sol para modo oscuro
-      } else {
-        toggleModeButton.textContent = ""; // Ícono de sol para modo claro
-      }
     }
+
+    // Mostrar/ocultar el menú de tres puntos
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    // Ocultar el menú cuando se hace clic fuera de él
+    window.addEventListener("click", function(e) {
+      const menu = document.getElementById("menu");
+      const menuIcon = document.querySelector(".menu-icon");
+      if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
   </script>
 
 </body>
