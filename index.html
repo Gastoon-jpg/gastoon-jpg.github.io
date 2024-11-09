@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reproducir videos</title>
+  <title>Mi Página de Videos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <div class="container">
-    <h1>Reproducir videos .mp4</h1>
-    <p>Hecha por Gastón Arag. Pone la URL del video que deseas ver:</p>
+    <h1>Mi Página de Videos</h1>
+
+    <!-- Botón para alternar entre blanco y negro / color -->
+    <button id="toggleColorMode">Blanco y Negro</button>
+
+    <p>Hecha por Gastón Arag. Pon la URL del video que deseas ver:</p>
     <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
     <button onclick="loadVideo()">Ver Video</button>
     <div class="video-container" id="videoContainer"></div>
@@ -18,7 +22,7 @@
 
   <!-- Carrusel de videos estilo Netflix -->
   <div class="carousel-container">
-    <h2>Explora nuestros videos/pelis</h2>
+    <h2>Explora nuestros videos</h2>
     <div class="carousel" id="carousel"></div>
   </div>
 
