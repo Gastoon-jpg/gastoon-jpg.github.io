@@ -26,7 +26,7 @@ input[type="text"] {
   font-size: 16px;
 }
 
-/* Estilos para el botón Ver Video */
+/* Estilos para el botón Ver Video y alternar modo color */
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -37,6 +37,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
 }
 
 button:hover {
@@ -55,7 +56,9 @@ button:hover {
 .carousel {
   display: flex;
   gap: 10px;
-  transition: transform 0.3s ease;
+  overflow-x: auto; /* Hacer scroll horizontal */
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .carousel img {
@@ -69,4 +72,9 @@ button:hover {
 
 .carousel img:hover {
   transform: scale(1.05);
+}
+
+/* Estilo para el modo blanco y negro */
+body.black-and-white {
+  filter: grayscale(100%);
 }
