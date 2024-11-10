@@ -1,237 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página de Videos</title>
-  <style>
-    /* Estilos básicos y tema oscuro por defecto */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #181818;
-      color: #ffffff;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Tatetí</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Modo claro */
-    body.light-mode {
-      background-color: #f4f4f4;
-      color: #333333;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    .container {
-      max-width: 600px;
-      padding: 40px;
-      margin: auto;
-      text-align: center;
-    }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    h1, h2 {
-      color: inherit;
-      margin-bottom: 20px;
-    }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
 
-    input[type="text"] {
-      width: 80%;
-      padding: 10px;
-      margin: 20px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-    }
+        .game-container {
+            text-align: center;
+            width: 320px;
+        }
 
-    /* Estilos para el botón "Ver Video" */
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: #ffffff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      margin: 10px;
-    }
+        .status {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
 
-    button:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
-    }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            margin-bottom: 15px;
+        }
 
-    /* Menú de tres puntos */
-    .menu-icon {
-      font-size: 24px;
-      color: #ffffff;
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 10;
-    }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+        }
 
-    /* Estilos para el menú */
-    .menu {
-      display: none;
-      position: absolute;
-      top: 40px;
-      right: 10px;
-      background-color: #333333;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+        .cell:hover {
+            background-color: #f7f7f7;
+        }
 
-    .menu button {
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
-      color: #ffffff;
-      padding: 5px 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    .menu button svg {
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-    }
-
-    /* Estilos para el carrusel */
-    .carousel-container {
-      max-width: 1000px;
-      margin: 40px auto;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .carousel {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .carousel img {
-      width: 180px;
-      height: 270px;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: transform 0.2s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .carousel img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Copyright */
-    .copyright {
-      text-align: center;
-      font-size: 14px;
-      padding: 20px;
-      color: #bbb;
-    }
-  </style>
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Juego de Tatetí</h1>
+    </header>
 
-  <!-- Menú de tres puntos y opciones -->
-  <div class="menu-icon" onclick="toggleMenu()">⋮</div>
-  <div class="menu" id="menu">
-    <button onclick="toggleColorMode()">
-      <!-- Icono de sol SVG -->
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 4V2M12 22v-2M4.22 4.22l1.42-1.42M18.36 18.36l-1.42 1.42M4 12H2m20 0h-2M4.22 19.78l1.42 1.42M18.36 5.64l-1.42-1.42M12 8a4 4 0 100 8 4 4 0 000-8z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Cambiar tema
-    </button>
-  </div>
+    <main>
+        <div class="game-container">
+            <div class="status" id="status">Turno del jugador X</div>
+            <div class="board" id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <button id="resetButton">Reiniciar Juego</button>
+        </div>
+    </main>
 
-  <!-- Contenido principal -->
-  <div class="container">
-    <h1>Mi Página de Videos</h1>
+    <footer>
+        <p>&copy; 2024 Gastón Aragón</p>
+    </footer>
 
-    <p>Introduce la URL del video que deseas ver:</p>
-    <input type="text" id="videoUrl" placeholder="Pega la URL del video aquí">
-    <button onclick="loadVideo()">Ver Video</button>
-    <div class="video-container" id="videoContainer"></div>
-  </div>
+    <script>
+        const board = document.getElementById("board");
+        const cells = Array.from(document.getElementsByClassName("cell"));
+        const statusText = document.getElementById("status");
+        const resetButton = document.getElementById("resetButton");
+        let currentPlayer = "X";
+        let gameActive = true;
+        let gameState = ["", "", "", "", "", "", "", "", ""];
 
-  <!-- Carrusel de videos estilo Netflix -->
-  <div class="carousel-container">
-    <h2>Explora nuestros videos</h2>
-    <div class="carousel" id="carousel"></div>
-  </div>
+        // Ganadores posibles
+        const winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
 
-  <!-- Copyright -->
-  <div class="copyright">
-    <p>Copyright: Por: Gastón Arag.</p>
-  </div>
+        function handleCellClick(event) {
+            const cell = event.target;
+            const cellIndex = cell.getAttribute("data-index");
 
-  <!-- Scripts -->
-  <script src="database.js"></script>
-  <script>
-    // Cargar los videos del "database.js" al carrusel
-    document.addEventListener("DOMContentLoaded", () => {
-      const carousel = document.getElementById("carousel");
+            if (gameState[cellIndex] !== "" || !gameActive) return;
 
-      videoDatabase.forEach(video => {
-        const img = document.createElement("img");
-        img.src = video.thumbnail;
-        img.alt = "Video thumbnail";
-        img.addEventListener("click", () => loadCarouselVideo(video.videoUrl));
-        carousel.appendChild(img);
-      });
+            gameState[cellIndex] = currentPlayer;
+            cell.textContent = currentPlayer;
 
-      // Configurar el menú y el modo oscuro por defecto
-      toggleColorMode(); // Iniciar en modo oscuro
-    });
+            checkResult();
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusText.textContent = `Turno del jugador ${currentPlayer}`;
+        }
 
-    // Función para cargar un video desde la URL ingresada manualmente
-    function loadVideo() {
-      const videoUrl = document.getElementById("videoUrl").value;
-      const videoContainer = document.getElementById("videoContainer");
+        function checkResult() {
+            let roundWon = false;
 
-      if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-        const videoId = videoUrl.split("v=")[1] || videoUrl.split("/").pop();
-        videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
-      } else {
-        videoContainer.innerHTML = `<video controls><source src="${videoUrl}" type="video/mp4"></video>`;
-      }
-    }
+            for (let condition of winningConditions) {
+                const [a, b, c] = condition;
+                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
 
-    // Función para cargar el video desde el carrusel
-    function loadCarouselVideo(videoUrl) {
-      const videoContainer = document.getElementById("videoContainer");
-      videoContainer.innerHTML = `<iframe src="${videoUrl}" allowfullscreen></iframe>`;
-    }
+            if (roundWon) {
+                statusText.textContent = `¡Jugador ${currentPlayer} gana!`;
+                gameActive = false;
+                return;
+            }
 
-    // Alternar entre modo oscuro y claro
-    function toggleColorMode() {
-      document.body.classList.toggle("light-mode");
-    }
+            if (!gameState.includes("")) {
+                statusText.textContent = "¡Es un empate!";
+                gameActive = false;
+            }
+        }
 
-    // Mostrar/ocultar el menú de tres puntos
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
+        function resetGame() {
+            gameActive = true;
+            currentPlayer = "X";
+            gameState = ["", "", "", "", "", "", "", "", ""];
+            statusText.textContent = `Turno del jugador ${currentPlayer}`;
+            cells.forEach(cell => (cell.textContent = ""));
+        }
 
-    // Ocultar el menú cuando se hace clic fuera de él
-    window.addEventListener("click", function(e) {
-      const menu = document.getElementById("menu");
-      const menuIcon = document.querySelector(".menu-icon");
-      if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
-        menu.style.display = "none";
-      }
-    });
-  </script>
-
+        // Eventos
+        cells.forEach(cell => cell.addEventListener("click", handleCellClick));
+        resetButton.addEventListener("click", resetGame);
+    </script>
 </body>
 </html>
