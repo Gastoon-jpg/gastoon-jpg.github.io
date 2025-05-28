@@ -3,7 +3,7 @@
 
 body {
   margin: 0;
-  padding: 10px;
+  padding: 5px;
   background: #fffaf9;
   font-family: 'Alegreya', serif;
   display: flex;
@@ -11,13 +11,14 @@ body {
   align-items: center;
   min-height: 100vh;
   box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
 }
 .nvlpcn {
   position: relative;
-  width: 100%;
+  width: 96%;
   max-width: 320px;
-  margin: 10px auto;
-  height: 180px;
+  margin: 5px auto;
+  height: 150px;
 }
 .nvlplft, .nvlprgt {
   width: 0;
@@ -26,34 +27,34 @@ body {
   position: absolute;
 }
 .nvlplft {
-  border-bottom: 180px solid #E15349;
-  border-right: 320px solid transparent;
+  border-bottom: 150px solid #E15349;
+  border-right: 100vw solid transparent;
 }
 .nvlprgt {
-  border-bottom: 180px solid #E95F55;
-  border-left: 320px solid transparent;
+  border-bottom: 150px solid #E95F55;
+  border-left: 100vw solid transparent;
 }
 .nvlpbhn {
   width: 100%;
-  height: 180px;
+  height: 150px;
   position: absolute;
   background: #bf433b;
   top: 0;
 }
 .lttr {
-  width: 86%;
+  width: 90%;
   height: 60px;
   background: #f7f7f7;
   position: absolute;
-  left: 7%;
-  top: 10px;
-  padding: 10px;
+  left: 5%;
+  top: 5px;
+  padding: 8px;
   overflow: auto;
   box-shadow: 0 0 2px #bfbfbf;
-  border-top: 30px solid #f7f7f7;
-  border-bottom: 30px solid #f7f7f7;
+  border-top: 25px solid #f7f7f7;
+  border-bottom: 25px solid #f7f7f7;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: justify;
   color: #000;
 }
@@ -63,8 +64,8 @@ body {
   transition-duration: .75s;
 }
 .nvlpcn:hover > .lttr {
-  top: -60px;
-  height: 250px;
+  top: -50px;
+  height: 280px;
   z-index: 2;
 }
 .nvlpcn:hover > .nvlpbhn,
@@ -75,18 +76,18 @@ body {
 .ttl, .frm {
   font-family: 'Pacifico', cursive;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   color: #CF4647;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 .frm {
   text-align: right;
-  margin-bottom: -5px;
+  margin-bottom: -3px;
 }
 .timer {
-  font-size: 12px;
+  font-size: 11px;
   text-align: center;
-  margin: 15px 0;
+  margin: 10px 0;
   color: #999;
   font-style: italic;
   width: 100%;
@@ -94,38 +95,17 @@ body {
   box-sizing: border-box;
 }
 
-/* Media query optimizada para móviles */
-@media screen and (max-width: 600px) {
-  body {
-    padding: 5px;
-  }
-  .nvlpcn {
-    height: 150px;
-    margin: 5px auto;
-  }
-  .nvlplft {
-    border-bottom: 150px solid #E15349;
-    border-right: 100vw solid transparent;
-  }
-  .nvlprgt {
-    border-bottom: 150px solid #E95F55;
-    border-left: 100vw solid transparent;
-  }
+/* Ajustes específicos para Android */
+@supports (-webkit-touch-callout: none) {
   .lttr {
-    top: 5px;
-    font-size: 11px;
-    padding: 8px;
-    width: 88%;
-    left: 6%;
-    border-top: 25px solid #f7f7f7;
-    border-bottom: 25px solid #f7f7f7;
+    font-size: 13px;
+    line-height: 1.6;
   }
   .ttl, .frm {
-    font-size: 18px;
+    font-size: 19px;
   }
   .timer {
-    font-size: 11px;
-    margin: 10px 0;
+    font-size: 12px;
   }
 }
 </style>
@@ -133,7 +113,7 @@ body {
 <div class="nvlpcn">
   <div class="nvlpbhn trs"></div>
   <div class="lttr trs">
-    <div class="ttl">Para: Ludmila Martinez,</div>
+    <div class="ttl">Ludmila Martinez,</div>
 
     Desde que nuestros caminos se cruzaron en aquella clase del colegio, y te pedi que fueras mi novia el 19 de abril de 2025, cada segundo contigo ha sido una explosión de arcoíris en mi corazón.  
     <br><br>
@@ -159,7 +139,6 @@ body {
   <div class="nvlprgt trs"></div>
 </div>
 
-<!-- Contador externo (debajo del sobre) -->
 <div class="timer" id="counter-outer"></div>
 
 <script>
