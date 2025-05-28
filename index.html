@@ -1,24 +1,21 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Alegreya&display=swap');
-
+@font-face {
+  font-family: 'bakery';
+  src: url('http://codesbymerc.b1.jcink.com/uploads/codesbymerc/bakery.woff') format('woff'),
+       url('http://codesbymerc.b1.jcink.com/uploads/codesbymerc/bakery.ttf') format('truetype');
+}
 body {
-  margin: 0;
-  padding: 5px;
+  margin: 40;
+  padding: 40;
   background: #fffaf9;
   font-family: 'Alegreya', serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
 }
 .nvlpcn {
   position: relative;
-  width: 96%;
-  max-width: 320px;
-  margin: 5px auto;
-  height: 150px;
+  max-width: 90%;
+  width: 320px;
+  margin: 60px auto;
+  height: 200px;
 }
 .nvlplft, .nvlprgt {
   width: 0;
@@ -27,34 +24,33 @@ body {
   position: absolute;
 }
 .nvlplft {
-  border-bottom: 150px solid #E15349;
-  border-right: 100vw solid transparent;
+  border-bottom: 200px solid #E15349;
+  border-right: 320px solid transparent;
 }
 .nvlprgt {
-  border-bottom: 150px solid #E95F55;
-  border-left: 100vw solid transparent;
+  border-bottom: 200px solid #E95F55;
+  border-left: 320px solid transparent;
 }
 .nvlpbhn {
-  width: 100%;
-  height: 150px;
+  width: 320px;
+  height: 200px;
   position: absolute;
   background: #bf433b;
   top: 0;
 }
 .lttr {
-  width: 90%;
-  height: 60px;
+  width: 220px;
+  height: 50px;
   background: #f7f7f7;
   position: absolute;
-  left: 5%;
-  top: 5px;
-  padding: 8px;
+  left: 40px;
+  top: 25px;
+  padding: 0 30px;
   overflow: auto;
   box-shadow: 0 0 2px #bfbfbf;
-  border-top: 25px solid #f7f7f7;
-  border-bottom: 25px solid #f7f7f7;
-  font-size: 12px;
-  line-height: 1.5;
+  border-top: 40px solid #f7f7f7;
+  border-bottom: 40px solid #f7f7f7;
+  font-size: 10px;
   text-align: justify;
   color: #000;
 }
@@ -64,8 +60,8 @@ body {
   transition-duration: .75s;
 }
 .nvlpcn:hover > .lttr {
-  top: -50px;
-  height: 280px;
+  top: -60px;
+  height: 250px;
   z-index: 2;
 }
 .nvlpcn:hover > .nvlpbhn,
@@ -74,39 +70,22 @@ body {
   opacity: 0;
 }
 .ttl, .frm {
-  font-family: 'Pacifico', cursive;
+  font-family: bakery;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 24px;
   color: #CF4647;
-  margin: 3px 0;
 }
 .frm {
   text-align: right;
-  margin-bottom: -3px;
+  margin-bottom: -5px;
 }
 .timer {
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
-  margin: 10px 0;
+  margin-top: 20px;
   color: #999;
   font-style: italic;
-  width: 100%;
-  padding: 0 5px;
-  box-sizing: border-box;
-}
-
-/* Ajustes específicos para Android */
-@supports (-webkit-touch-callout: none) {
-  .lttr {
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  .ttl, .frm {
-    font-size: 19px;
-  }
-  .timer {
-    font-size: 12px;
-  }
+  padding: 0 10px;
 }
 </style>
 
@@ -117,7 +96,7 @@ body {
 
     Desde que nuestros caminos se cruzaron en aquella clase del colegio, y te pedi que fueras mi novia el 19 de abril de 2025, cada segundo contigo ha sido una explosión de arcoíris en mi corazón.  
     <br><br>
-    Eres la cucharada de azúcar en mi café amargo, el brillo de cada estrella, el "te amo" que quiero repetir hasta quedarme sin voz.  
+    Eres la cucharada de azúcar en mi café amargo, el brillo de cada estrella, el “te amo” que quiero repetir hasta quedarme sin voz.  
     <br><br>
     Si el amor tuviera forma, llevaría tu sonrisa. Si tuviera sonido, sería tu risa. Si tuviera sabor, sabría a tus besos.  
     <br><br>
@@ -129,7 +108,7 @@ body {
     <br><br>
     Seré tu abrigo cuando haga frío, tu risa cuando estés triste y tu compañero cuando el mundo no tenga sentido.  
     <br><br>
-    A veces pienso que debería detenerme, que tanta cursilería no cabe en una sola carta... pero luego recuerdo que contigo, no hay suficiente papel para todo lo que siento.  
+    A veces pienso que debería detenerme, que tanta cursilería no cabe en una sola carta… pero luego recuerdo que contigo, no hay suficiente papel para todo lo que siento.  
     <br><br>
     Te amo más que ayer, menos que mañana.  
     <div class="frm">De: Gastón Aragón</div>
@@ -139,6 +118,7 @@ body {
   <div class="nvlprgt trs"></div>
 </div>
 
+<!-- Contador externo (debajo del sobre) -->
 <div class="timer" id="counter-outer"></div>
 
 <script>
