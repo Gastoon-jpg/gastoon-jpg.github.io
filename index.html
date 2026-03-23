@@ -1,172 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Para Ludmila ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Alegreya&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  margin: 0;
-  padding: 0;
-  background: #fffaf9;
-  font-family: 'Alegreya', serif;
+:root {
+  --bg1: #1a0a0a;
+  --bg2: #2d1010;
+  --gold: #c9a050;
+  --gold2: #e8c97a;
+  --rose: #c0415a;
+  --rose2: #e8607a;
+  --paper: #fdf6ee;
+  --paper2: #f7ece0;
+  --ink: #2a1515;
+  --ink2: #5a3030;
+}
+
+html, body {
+  min-height: 100svh;
+  background: var(--bg1);
+  font-family: 'Cormorant Garamond', serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  overflow-x: hidden;
 }
-.nvlpcn {
+
+/* ── rich dark background ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(180,40,60,.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(140,30,50,.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(40,5,5,.6) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── floating particles ── */
+.particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.p {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+  10%  { opacity: .6; }
+  90%  { opacity: .3; }
+  100% { opacity: 0; transform: translateY(-10vh) scale(1.5) translateX(var(--dx)); }
+}
+
+/* ── wrapper ── */
+.wrapper {
   position: relative;
-  width: 90vw;
-  max-width: 320px;
-  margin: 20px auto;
-  height: 180px;
-}
-.nvlplft, .nvlprgt {
-  width: 0;
-  height: 0;
-  top: 0;
-  position: absolute;
-}
-.nvlplft {
-  border-bottom: 180px solid #E15349;
-  border-right: 320px solid transparent;
-}
-.nvlprgt {
-  border-bottom: 180px solid #E95F55;
-  border-left: 320px solid transparent;
-}
-.nvlpbhn {
+  z-index: 1;
   width: 100%;
-  height: 180px;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 20px 40px;
+}
+
+/* ── header ── */
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.header-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 9vw, 46px);
+  color: var(--gold2);
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(201,160,80,.4);
+  display: block;
+}
+.header-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.header-divider::before,
+.header-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.header-divider svg {
+  width: 14px; height: 14px;
+  fill: var(--rose2);
+  filter: drop-shadow(0 0 6px rgba(232,96,122,.6));
+}
+
+/* ══════════ ENVELOPE ══════════ */
+.env-container {
+  width: min(92vw, 360px);
+  position: relative;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  filter: drop-shadow(0 12px 40px rgba(0,0,0,.55));
+  transition: filter .3s ease;
+}
+.envelope:active { filter: drop-shadow(0 8px 20px rgba(0,0,0,.55)) brightness(.95); }
+
+/* envelope body */
+.env-body {
+  width: 100%;
+  aspect-ratio: 7/4.5;
+  background: linear-gradient(160deg, #8b1a2a 0%, #6b0f1e 50%, #5a0c18 100%);
+  border-radius: 4px 4px 8px 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* inner shadow / depth */
+.env-body::after {
+  content: '';
   position: absolute;
-  background: #bf433b;
-  top: 0;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.3) 100%);
+  pointer-events: none;
 }
-.lttr {
-  width: 85%;
-  height: 60px;
-  background: #f7f7f7;
+
+/* bottom-left triangle */
+.env-bl {
   position: absolute;
-  left: 7%;
-  top: 15px;
-  padding: 10px;
-  overflow: auto;
-  box-shadow: 0 0 2px #bfbfbf;
-  border-top: 35px solid #f7f7f7;
-  border-bottom: 35px solid #f7f7f7;
-  font-size: 11px;
-  text-align: justify;
-  color: #000;
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 var(--th) var(--tw);
+  --th: 145px; --tw: 180px;
+  border-color: transparent transparent #7a1220 transparent;
+  z-index: 1;
 }
-.lttr::-webkit-scrollbar { width: 2px; }
-.lttr::-webkit-scrollbar-thumb { background-color: #CF4647; }
-.trs {
-  transition-duration: .75s;
+/* bottom-right triangle */
+.env-br {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: var(--th) 0 0 var(--tw);
+  --th: 145px; --tw: 180px;
+  border-color: transparent transparent transparent #6a0e1a;
+  z-index: 1;
 }
-.nvlpcn:hover > .lttr {
-  top: -60px;
-  height: 250px;
+
+/* top flap */
+.env-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  background: linear-gradient(150deg, #9e1f30 0%, #7a1220 60%, #5c0d17 100%);
   z-index: 2;
+  transform-origin: top center;
+  transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .4s ease;
 }
-.nvlpcn:hover > .nvlpbhn,
-.nvlpcn:hover > .nvlplft,
-.nvlpcn:hover > .nvlprgt {
+.envelope.open .env-flap {
+  transform: perspective(600px) rotateX(-175deg);
+  opacity: .6;
+}
+
+/* gold border detail on flap */
+.env-flap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  background: linear-gradient(150deg, rgba(201,160,80,.15) 0%, transparent 60%);
+}
+
+/* wax seal */
+.wax-seal {
+  position: absolute;
+  z-index: 4;
+  top: 52%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  transition: opacity .25s ease, transform .3s ease;
+}
+.envelope.open .wax-seal { opacity: 0; transform: translate(-50%,-50%) scale(.7); }
+
+.wax-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #c0415a, #8b1a2a 70%);
+  box-shadow:
+    0 0 0 2px rgba(201,160,80,.5),
+    0 3px 14px rgba(0,0,0,.5),
+    inset 0 1px 3px rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wax-circle svg {
+  width: 26px; height: 26px;
+  fill: rgba(255,255,255,.85);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.4));
+}
+
+/* gold frame lines */
+.env-frame {
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(201,160,80,.22);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.env-hint {
+  text-align: center;
+  color: rgba(255,255,255,.45);
+  font-style: italic;
+  font-size: clamp(12px, 3.2vw, 14px);
+  letter-spacing: .08em;
+  margin-top: 14px;
+  transition: opacity .3s;
+}
+.envelope.open + .env-hint { opacity: 0; }
+
+/* ══════════ LETTER ══════════ */
+.letter-wrap {
+  width: min(92vw, 360px);
+  margin-top: 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .7s cubic-bezier(.4,0,.2,1), opacity .5s ease;
   opacity: 0;
 }
-.ttl, .frm {
-  font-family: 'Pacifico', cursive;
-  font-weight: normal;
-  font-size: 22px;
-  color: #CF4647;
-}
-.frm {
-  text-align: right;
-  margin-bottom: -5px;
-}
-.timer {
-  font-size: 13px;
-  text-align: center;
-  margin-top: 25px;
-  color: #999;
-  font-style: italic;
-  padding: 0 10px;
-  width: 90%;
+.letter-wrap.visible {
+  max-height: 1200px;
+  opacity: 1;
 }
 
-/* Media query extra para pantallas menores a 400px */
-@media screen and (max-width: 400px) {
-  .nvlpcn {
-    height: 160px;
-  }
-  .nvlplft {
-    border-bottom: 160px solid #E15349;
-    border-right: 100vw solid transparent;
-  }
-  .nvlprgt {
-    border-bottom: 160px solid #E95F55;
-    border-left: 100vw solid transparent;
-  }
-  .lttr {
-    top: 10px;
-    font-size: 10px;
-    padding: 8px;
-  }
+.letter {
+  background: var(--paper);
+  border-radius: 4px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5),
+    0 0 0 1px rgba(201,160,80,.15);
+  padding: 28px 24px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* paper texture lines */
+.letter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 27px,
+    rgba(150,100,80,.09) 27px,
+    rgba(150,100,80,.09) 28px
+  );
+  pointer-events: none;
+}
+
+/* left red margin line */
+.letter::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 44px; bottom: 0;
+  width: 1px;
+  background: rgba(192,65,90,.2);
+  pointer-events: none;
+}
+
+/* gold top ornament */
+.letter-ornament {
+  text-align: center;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.letter-ornament svg {
+  width: 120px; height: 18px;
+}
+
+.letter-to {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(22px, 6vw, 28px);
+  color: var(--rose);
+  margin-bottom: 16px;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-body {
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 1.8;
+  color: var(--ink);
+  text-align: justify;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+.letter-body p { margin-bottom: .95em; }
+.letter-body p:last-child { margin-bottom: 0; }
+
+.letter-from {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(20px, 5.5vw, 26px);
+  color: var(--rose);
+  text-align: right;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192,65,90,.3), transparent);
+  margin: 16px 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-timer {
+  font-size: clamp(10px, 2.8vw, 12px);
+  color: var(--ink2);
+  text-align: center;
+  line-height: 1.6;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+  opacity: .75;
+}
+
+.close-btn {
+  display: block;
+  margin: 16px auto 0;
+  background: none;
+  border: 1px solid rgba(192,65,90,.35);
+  color: var(--rose);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: .08em;
+  padding: 7px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .2s, color .2s;
+}
+.close-btn:active { background: rgba(192,65,90,.1); }
+
+/* ── outer timer ── */
+.timer-outer {
+  margin-top: 22px;
+  font-size: clamp(11px, 3vw, 13px);
+  color: rgba(201,160,80,.6);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.65;
+  max-width: 300px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: .02em;
 }
 </style>
+</head>
+<body>
 
+<!-- particles -->
+<div class="particles" id="particles"></div>
 
-<div class="nvlpcn">
-  <div class="nvlpbhn trs"></div>
-  <div class="lttr trs">
-    <div class="ttl">Para: Ludmila Martinez,</div>
+<div class="wrapper">
 
-    Desde que nuestros caminos se cruzaron en aquella clase del colegio, y te pedi que fueras mi novia el 19 de abril de 2025, cada segundo contigo ha sido una explosión de arcoíris en mi corazón.  
-    <br><br>
-    Eres la cucharada de azúcar en mi café amargo, el brillo de cada estrella, el “te amo” que quiero repetir hasta quedarme sin voz.  
-    <br><br>
-    Si el amor tuviera forma, llevaría tu sonrisa. Si tuviera sonido, sería tu risa. Si tuviera sabor, sabría a tus besos.  
-    <br><br>
-    Te pienso tanto que mi cerebro ha alquilado una habitación en forma de corazón solo para ti. A tu lado entendí lo que es flotar sin alas y temblar sin frío.  
-    <br><br>
-    Cuando me abrazas, el mundo se detiene. Cuando me miras, se reinicia. Cuando me besas, deja de importar.  
-    <br><br>
-    Quiero vivir contigo todos los atardeceres y besarte en todos los amaneceres.  
-    <br><br>
-    Seré tu abrigo cuando haga frío, tu risa cuando estés triste y tu compañero cuando el mundo no tenga sentido.  
-    <br><br>
-    A veces pienso que debería detenerme, que tanta cursilería no cabe en una sola carta… pero luego recuerdo que contigo, no hay suficiente papel para todo lo que siento.  
-    <br><br>
-    Te amo más que ayer, menos que mañana.  
-    <div class="frm">De: Gastón Aragón</div>
-    <div class="timer" id="counter"></div>
+  <!-- header -->
+  <div class="header">
+    <span class="header-script">Una carta para ti</span>
+    <div class="header-divider">
+      <svg viewBox="0 0 24 22"><path d="M12 21C12 21 2 13.5 2 7a5 5 0 0 1 10 0 5 5 0 0 1 10 0c0 6.5-10 14-10 14z"/></svg>
+    </div>
   </div>
-  <div class="nvlplft trs"></div>
-  <div class="nvlprgt trs"></div>
+
+  <!-- envelope -->
+  <div class="env-container">
+    <div class="envelope" id="env">
+      <div class="env-body">
+        <div class="env-bl"></div>
+        <div class="env-br"></div>
+        <div class="env-flap"></div>
+        <div class="env-frame"></div>
+        <div class="wax-seal">
+          <div class="wax-circle">
+            <svg viewBox="0 0 24 22">
+              <path d="M12 20.5C12 20.5 2.5 13.5 2.5 7.5a4.5 4.5 0 0 1 9 0 4.5 4.5 0 0 1 9 0c0 6-9.5 13-9.5 13z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="env-hint" id="hint">— Toca el sobre para abrirlo —</div>
+  </div>
+
+  <!-- letter -->
+  <div class="letter-wrap" id="letterWrap">
+    <div class="letter">
+
+      <!-- ornament SVG -->
+      <div class="letter-ornament">
+        <svg viewBox="0 0 120 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="9" x2="46" y2="9" stroke="url(#g1)" stroke-width="1"/>
+          <path d="M52 9 C52 6 55 3 58 5 C59 6 60 7 60 9 C60 7 61 6 62 5 C65 3 68 6 68 9 C68 12 65 15 60 18 C55 15 52 12 52 9Z" fill="#c0415a" opacity=".7"/>
+          <line x1="74" y1="9" x2="120" y2="9" stroke="url(#g2)" stroke-width="1"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="46" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#c9a050" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#c9a050" stop-opacity=".6"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="74" y1="0" x2="120" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#c9a050" stop-opacity=".6"/>
+              <stop offset="100%" stop-color="#c9a050" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="letter-to">Para: Ludmila Martinez,</div>
+
+      <div class="letter-body">
+        <p>Desde que nuestros caminos se cruzaron en aquella clase del colegio, y te pedí que fueras mi novia el 19 de abril de 2025, cada segundo contigo ha sido una explosión de arcoíris en mi corazón.</p>
+        <p>Eres la cucharada de azúcar en mi café amargo, el brillo de cada estrella, el "te amo" que quiero repetir hasta quedarme sin voz.</p>
+        <p>Si el amor tuviera forma, llevaría tu sonrisa. Si tuviera sonido, sería tu risa. Si tuviera sabor, sabría a tus besos.</p>
+        <p>Te pienso tanto que mi cerebro ha alquilado una habitación en forma de corazón solo para ti. A tu lado entendí lo que es flotar sin alas y temblar sin frío.</p>
+        <p>Cuando me abrazas, el mundo se detiene. Cuando me miras, se reinicia. Cuando me besas, deja de importar.</p>
+        <p>Quiero vivir contigo todos los atardeceres y besarte en todos los amaneceres.</p>
+        <p>Seré tu abrigo cuando haga frío, tu risa cuando estés triste y tu compañero cuando el mundo no tenga sentido.</p>
+        <p>A veces pienso que debería detenerme, que tanta cursilería no cabe en una sola carta… pero luego recuerdo que contigo, no hay suficiente papel para todo lo que siento.</p>
+        <p>Te amo más que ayer, menos que mañana.</p>
+      </div>
+
+      <div class="letter-from">De: Gastón Aragón</div>
+
+      <div class="letter-divider"></div>
+      <div class="letter-timer" id="timer-in">—</div>
+
+      <button class="close-btn" id="closeBtn">cerrar carta</button>
+    </div>
+  </div>
+
+  <div class="timer-outer" id="timer-out">—</div>
+
 </div>
 
-<!-- Contador externo (debajo del sobre) -->
-<div class="timer" id="counter-outer"></div>
-
 <script>
-function updateCounter() {
-  const startDate = new Date("2025-04-14T00:00:00");
-  const now = new Date();
-  const diff = now - startDate;
-
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30.4375);
-
-  const remainingDays = days % 30.4375;
-  const remainingMinutes = minutes % 60;
-  const remainingSeconds = seconds % 60;
-
-  const counterText = 
-    `Llevamos ${months} meses, ${Math.floor(remainingDays)} día(s), ` +
-    `${remainingMinutes} minuto(s) y ${remainingSeconds} segundo(s) amándonos sin parar ❤️`;
-
-  document.getElementById("counter").innerText = counterText;
-  document.getElementById("counter-outer").innerText = counterText;
+/* particles */
+const pc = document.getElementById('particles');
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'p';
+  p.style.cssText = `
+    left: ${Math.random()*100}%;
+    width: ${1+Math.random()*3}px;
+    height: ${1+Math.random()*3}px;
+    animation-duration: ${6+Math.random()*10}s;
+    animation-delay: ${Math.random()*10}s;
+    --dx: ${(Math.random()-.5)*80}px;
+    opacity: 0;
+  `;
+  pc.appendChild(p);
 }
 
+/* counter */
+function updateCounter() {
+  const diff = Date.now() - new Date("2025-04-14T00:00:00");
+  const s  = Math.floor(diff/1000);
+  const m  = Math.floor(s/60);
+  const d  = Math.floor(m/1440);
+  const mo = Math.floor(d/30.4375);
+  const rd = Math.floor(d%30.4375);
+  const rm = m%60;
+  const rs = s%60;
+  const t  = `Llevamos ${mo} meses, ${rd} día(s), ${rm} minuto(s) y ${rs} segundo(s) amándonos sin parar ❤️`;
+  document.getElementById('timer-in').textContent = t;
+  document.getElementById('timer-out').textContent = t;
+}
 setInterval(updateCounter, 1000);
 updateCounter();
+
+/* open / close */
+const env       = document.getElementById('env');
+const letterWrap= document.getElementById('letterWrap');
+const closeBtn  = document.getElementById('closeBtn');
+const hint      = document.getElementById('hint');
+
+function openEnv(e) {
+  e.preventDefault();
+  env.classList.add('open');
+  hint.style.opacity = '0';
+  setTimeout(() => letterWrap.classList.add('visible'), 300);
+}
+function closeEnv(e) {
+  e.preventDefault();
+  letterWrap.classList.remove('visible');
+  setTimeout(() => {
+    env.classList.remove('open');
+    hint.style.opacity = '1';
+  }, 300);
+}
+
+env.addEventListener('click',    openEnv);
+env.addEventListener('touchend', openEnv);
+closeBtn.addEventListener('click',    closeEnv);
+closeBtn.addEventListener('touchend', closeEnv);
 </script>
+</body>
+</html>
